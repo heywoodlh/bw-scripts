@@ -11,7 +11,7 @@ jq: `brew install jq`
 
 `mkdir -p /opt/slab`
 
-`curl 'https://gist.githubusercontent.com/heywoodlh/4de84b2b55efc681e78e904132e3774e/raw/ea99a9173bf4bcd213d20971f2da4c92be154494/slab.sh' -o /opt/slab/slab.sh`
+`curl 'https://raw.githubusercontent.com/heywoodlh/bw-scripts/master/slab.sh' -o /opt/slab/slab.sh`
 
 `chmod +x /opt/slab/slab.sh`
 
@@ -31,7 +31,7 @@ Dependency installation (Debian/Ubuntu):
 
 `mkdir -p /opt/slab`
 
-`curl 'https://gist.githubusercontent.com/heywoodlh/4de84b2b55efc681e78e904132e3774e/raw/ea99a9173bf4bcd213d20971f2da4c92be154494/slab.sh' -o /opt/slab/slab.sh`
+`curl 'https://raw.githubusercontent.com/heywoodlh/bw-scripts/master/slab.sh' -o /opt/slab/slab.sh`
 
 `chmod +x /opt/slab/slab.sh`
 
