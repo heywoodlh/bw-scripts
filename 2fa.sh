@@ -63,7 +63,7 @@ bw_get_items () {
 
 	if [[ "$OS" == 'Linux' ]]
 	then
-		SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | select(.login.totp != null) | .name' | rofi -dmenu)"
+		SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | select(.login.totp != null) | .name' | rofi -dmenu -p 'MFA: ')"
 		bw get totp "$SELECTION" --session "$BW_SESSION" | xclip -selection clipboard
 	elif [[ "$OS" == 'Mac' ]]
 	then

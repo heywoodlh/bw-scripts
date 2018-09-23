@@ -63,7 +63,7 @@ bw_get_items () {
 
 	if [[ "$OS" == 'Linux' ]]
 	then
-		SELECTION="$(bw list items --search 'sudolikeaboss://' --session "$BW_SESSION" | jq -r '.[].name' | rofi -dmenu)"
+		SELECTION="$(bw list items --search 'sudolikeaboss://' --session "$BW_SESSION" | jq -r '.[].name' | rofi -dmenu -p 'slab: ')"
 		bw get password "$SELECTION" --session "$BW_SESSION" | xclip -selection clipboard
 	elif [[ "$OS" == 'Mac' ]]
 	then
