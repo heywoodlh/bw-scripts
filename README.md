@@ -1,39 +1,39 @@
+### Script descriptions:
+
+`slab.sh` provides sudo-like-a-boss functionality ([original-repo](https://github.com/ravenac95/sudolikeaboss) -- watch the GIF in the README)
+
+`2fa.sh` provides a graphical front-end to your 2FA TOTP keys stored in Bitwarden
+
+
 ### MacOS Installation:
 
-bw: `brew install bitwarden-cli`
+Install the dependencies:
 
-choose: `brew install choose-gui`
+bw: `brew install bitwarden-cli choose jq`
 
-jq: `brew install jq`
 
+Download bw-scripts:
 
 `sudo chown -R "$USER":"$USER" /opt`
 
-`mkdir -p /opt/slab`
-
-`curl 'https://raw.githubusercontent.com/heywoodlh/bw-scripts/master/slab.sh' -o /opt/slab/slab.sh`
-
-`chmod +x /opt/slab/slab.sh`
+`git clone https://github.com/heywoodlh/bw-scripts /opt/bw-scripts`
 
 
 
 ### Linux Installation:
 
-BW CLI install: 
+Install the dependencies (Debian/Ubuntu): 
 
-`sudo snap install bw`
-
-Dependency installation (Debian/Ubuntu):
+`sudo snap install bw`:
 
 `sudo apt-get install xclip rofi jq zenity`
 
+
+Download bw-scripts:
+
 `sudo chown -R "$USER":"$USER" /opt`
 
-`mkdir -p /opt/slab`
-
-`curl 'https://raw.githubusercontent.com/heywoodlh/bw-scripts/master/slab.sh' -o /opt/slab/slab.sh`
-
-`chmod +x /opt/slab/slab.sh`
+`git clone https://github.com/heywoodlh/bw-scripts /opt/bw-scripts`
 
 
 
@@ -41,9 +41,9 @@ Dependency installation (Debian/Ubuntu):
 
 `slab.sh` will only return items in the vault with a corresponding URI of `sudolikeaboss://`. So any entry you'd like to have returned by `slab` will need to have that URI. Also, `slab.sh` doesn't intelligently work with names so if an entry returns multiple values it will not work. I recommend naming each item in your vault that you'd like to have returned by `slab.sh` a really unique name (I.E. `Google Personal Account -- SLAB`) so that `slab.sh` doesn't return multiple values.
 
-`slab.sh` reads `~/.bw_session` for it's session ID. Therefore, login this way:
+All of these scripts read `~/.bw_session` for it's session ID. Therefore, login this way:
 
 `bw login --raw > ~/.bw_session`
 
 
-Once logged in, `slab.sh` should be suitable for use. Either create a keyboard shortcut to `/opt/slab/slab.sh` or invoke `/opt/slab/slab.sh` from the CLI.
+Once logged in, `slab.sh` or `2fa.sh` should be suitable for use. Either create a keyboard shortcut the scripts in `/opt/bw-scripts` or invoke the scripts from the CLI.
