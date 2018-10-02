@@ -56,6 +56,16 @@ bw_get_items () {
 			VAULT_PW="$(zenity --password)"
 		fi
 		BW_SESSION="$(bw unlock "$VAULT_PW" --raw)"
+                if [[ "$BW_SESSION" == 'Invalid master password.' ]] && [[ "$OS" == 'Mac' ]]
+                then
+                        osascript -e 'tell app "System Events" to display dialog "Invalid master password."'
+                        exit 1
+                fi
+                if [[ "$BW_SESSION" == 'Invalid master password.' ]] && [[ "$OS" == 'Linux' ]]
+                then
+                        zenity --info --text="Invalid master password."
+                        exit 1
+                fi
 		echo "$BW_SESSION" > ~/.bw_session
 	else
 		BW_SESSION="$(cat ~/.bw_session)"
@@ -63,11 +73,21 @@ bw_get_items () {
 
 	if [[ "$OS" == 'Linux' ]]
 	then
+		{
 		SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | select(.login.totp != null) | .name' | rofi -dmenu -p 'MFA: ')"
+	} || {
+                zenity --info --text="Error, please run again. Run 'rm ~/.bw_session' if issues continue."
+                exit 1
+	}
 		bw get totp "$SELECTION" --session "$BW_SESSION" | xclip -selection clipboard
 	elif [[ "$OS" == 'Mac' ]]
 	then
+		{
 		SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | select(.login.totp != null) | .name' | choose)"
+	} || {
+                osascript -e 'tell app "System Events" to display dialog "Error, please run again. Run `rm ~/.bw_session` if issues continue."'
+                exit 1
+        }
 		bw get totp "$SELECTION" --session "$BW_SESSION" | pbcopy
 	fi
 	
