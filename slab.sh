@@ -76,7 +76,7 @@ bw_get_items () {
 		{
 		SELECTION="$(bw list items --search 'sudolikeaboss://' --session "$BW_SESSION" | jq -r '.[].name' | rofi -dmenu -p 'slab: ')"
 	} || {
-		zenity --info --text="Error, please run again. Run 'rm ~/.bw_session' if issues continue."
+		#zenity --info --text="Error, please run again. Run 'rm ~/.bw_session' if issues continue."
 		exit 1
 	}
 		bw get password "$SELECTION" --session "$BW_SESSION" | xclip -selection clipboard
@@ -85,7 +85,7 @@ bw_get_items () {
 		{
 		SELECTION="$(bw list items --search 'sudolikeaboss://' --session "$BW_SESSION" | jq -r '.[].name' | choose)"
 	} || {
-		osascript -e 'tell app "System Events" to display dialog "Error, please run again. Run `rm ~/.bw_session` if issues continue."'
+		#osascript -e 'tell app "System Events" to display dialog "Error, please run again. Run `rm ~/.bw_session` if issues continue."'
 		exit 1
 	}
 		bw get password "$SELECTION" --session "$BW_SESSION" | pbcopy
