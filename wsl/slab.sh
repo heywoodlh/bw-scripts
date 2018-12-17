@@ -53,7 +53,8 @@ bw_get_items () {
 			VAULT_PW="$(osascript -e 'Tell application "System Events" to display dialog "Enter Bitwarden Vault Password:" with hidden answer default answer ""' -e 'text returned of result' 2>/dev/null)"
 		elif [[ "$OS" == 'Linux' ]]
 		then
-			VAULT_PW="$(dialog --passwordbox 'Please enter your password' 10 30)"
+			echo 'Please enter your password: '
+			read -s VAULT_PW
 		fi
 		BW_SESSION="$(bw unlock "$VAULT_PW" --raw)"
 		if [[ "$BW_SESSION" == 'Invalid master password.' ]] && [[ "$OS" == 'Mac' ]]
