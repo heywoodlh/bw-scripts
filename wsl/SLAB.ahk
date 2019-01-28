@@ -5,13 +5,13 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
 ^#s::
-Run, "C:\Program Files\Alacritty\Alacritty.exe" -e debian.exe run /home/heywoodlh/git/bw-scripts/wsl/slab.sh
+Run, "C:\Program Files\Alacritty\Alacritty.exe" -e debian.exe run ~/git/bw-scripts/wsl/slab.sh
 return
 
 ^#2::
-Run, "C:\Program Files\Alacritty\Alacritty.exe" -e debian.exe run /home/heywoodlh/git/bw-scripts/wsl/2fa.sh
+Run, "C:\Program Files\Alacritty\Alacritty.exe" -e debian.exe run ~/git/bw-scripts/wsl/2fa.sh
 return
 
 ^#u::
-Run, "C:\Program Files\Alacritty\Alacritty.exe" -e debian.exe /home/heywoodlh/git/bw-scripts/wsl/unlock.sh
+Run, "C:\Program Files\Alacritty\Alacritty.exe" -e debian.exe run ~/git/bw-scripts/wsl/unlock.sh
 return
