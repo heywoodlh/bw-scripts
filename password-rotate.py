@@ -8,6 +8,7 @@ import getpass
 import datetime
 import pyjq
 from datetime import datetime, timedelta
+import distutils.spawn
 
 
 
@@ -65,6 +66,9 @@ def get_dates(days, using_session_file, session_file):
                 print('Days Since Last Revision: ' +  str(days))
 
 def main():
+    if not distutils.spawn.find_executable("bw"):
+        print('Please install bitwarden-cli and make sure it is in $PATH. Exiting.')
+        return(False)
     if not args.password:
         check_session_file(args.session_file)
         using_session_file = 'True'
