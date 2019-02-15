@@ -74,7 +74,7 @@ bw_get_items () {
 	if [[ "$OS" == 'Linux' ]]
 	then
 		{
-		SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | select(.login.totp != null) | .name' | rofi -dmenu -p 'MFA: ')"
+		SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | select(.login.totp != null) | .name' | rofi -dmenu -p 'MFA')"
 	} || {
                 #zenity --info --text="Error, please run again. Run 'rm ~/.bw_session' if issues continue."
                 exit 1

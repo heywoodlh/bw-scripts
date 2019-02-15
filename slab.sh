@@ -74,21 +74,24 @@ bw_get_items () {
 	if [[ "$OS" == 'Linux' ]]
 	then
 		{
-		SELECTION="$(bw list items --search 'sudolikeaboss://' --session "$BW_SESSION" | jq -r '.[].name' | rofi -dmenu -p 'slab: ')"
+		
+			SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | "\(.name), (\(.id))"' | rofi -dmenu -p 'slab')"
+			SELECTION_ID="$(echo "$SELECTION" |  awk -F "[()]" '{ for (i=2; i<NF; i+=2) print $i }')"
 	} || {
 		#zenity --info --text="Error, please run again. Run 'rm ~/.bw_session' if issues continue."
 		exit 1
 	}
-		bw get password "$SELECTION" --session "$BW_SESSION" | xclip -selection clipboard
+		bw get password "$SELECTION_ID" --session "$BW_SESSION" | xclip -selection clipboard
 	elif [[ "$OS" == 'Mac' ]]
 	then
 		{
-		SELECTION="$(bw list items --search 'sudolikeaboss://' --session "$BW_SESSION" | jq -r '.[].name' | choose)"
+		SELECTION="$(bw list items --search 'sudolikeaboss://' --session "$BW_SESSION" | jq -r '.[] | "\(.name), (\(.id))"' | choose)"
+		SELECTION_ID="$(echo "$SELECTION" |  awk -F "[()]" '{ for (i=2; i<NF; i+=2) print $i }')"
 	} || {
 		#osascript -e 'tell app "System Events" to display dialog "Error, please run again. Run `rm ~/.bw_session` if issues continue."'
 		exit 1
 	}
-		bw get password "$SELECTION" --session "$BW_SESSION" | pbcopy
+		bw get password "$SELECTION_ID" --session "$BW_SESSION" | pbcopy
 	fi
 	
 }	
