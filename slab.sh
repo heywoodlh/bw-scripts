@@ -85,7 +85,7 @@ bw_get_items () {
 	elif [[ "$OS" == 'Mac' ]]
 	then
 		{
-		SELECTION="$(bw list items --search 'sudolikeaboss://' --session "$BW_SESSION" | jq -r '.[] | "\(.name), (\(.id))"' | choose)"
+		SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | "\(.name), (\(.id))"' | choose)"
 		SELECTION_ID="$(echo "$SELECTION" |  awk -F "[()]" '{ for (i=2; i<NF; i+=2) print $i }')"
 	} || {
 		#osascript -e 'tell app "System Events" to display dialog "Error, please run again. Run `rm ~/.bw_session` if issues continue."'
