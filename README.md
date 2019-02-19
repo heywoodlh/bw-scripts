@@ -39,7 +39,7 @@ Download bw-scripts:
 
 ### Usage:
 
-`slab.sh` will only return items in the vault with a corresponding URI of `sudolikeaboss://`. So any entry you'd like to have returned by `slab` will need to have that URI. Also, `slab.sh` doesn't intelligently work with names so if an entry returns multiple values it will not work. I recommend naming each item in your vault that you'd like to have returned by `slab.sh` a really unique name (I.E. `Google Personal Account -- SLAB`) so that `slab.sh` doesn't return multiple values.
+~~`slab.sh` will only return items in the vault with a corresponding URI of `sudolikeaboss://`. So any entry you'd like to have returned by `slab` will need to have that URI. Also, `slab.sh` doesn't intelligently work with names so if an entry returns multiple values it will not work. I recommend naming each item in your vault that you'd like to have returned by `slab.sh` a really unique name (I.E. `Google Personal Account -- SLAB`) so that `slab.sh` doesn't return multiple values.~~
 
 All of these scripts read `~/.bw_session` for it's session ID. Therefore, login this way:
 
