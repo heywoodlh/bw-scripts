@@ -75,7 +75,7 @@ bw_get_items () {
 	then
 		{
 		
-			SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | "\(.name), (\(.id))"' | rofi -dmenu -p 'slab')"
+			SELECTION="$(bw list items --session "$BW_SESSION" | jq -r '.[] | "\(.name), (\(.id))"' | rofi -dmenu -theme solarized -font "hack 10" -p 'slab')"
 			SELECTION_ID="$(echo "$SELECTION" |  awk -F "[()]" '{ for (i=2; i<NF; i+=2) print $i }')"
 	} || {
 		#zenity --info --text="Error, please run again. Run 'rm ~/.bw_session' if issues continue."
