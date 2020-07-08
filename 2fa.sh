@@ -56,12 +56,12 @@ bw_get_items () {
 			VAULT_PW="$(zenity --password)"
 		fi
 		BW_SESSION="$(bw unlock "$VAULT_PW" --raw)"
-                if [[ "$BW_SESSION" == 'Invalid master password.' ]] && [[ "$OS" == 'Mac' ]]
+                if [[ "$BW_SESSION" == 'Invalid master password.' ]] || [[ -z "$BW_SESSION" ]] && [[ "$OS" == 'Mac' ]]
                 then
                         osascript -e 'tell app "System Events" to display dialog "Invalid master password."'
                         exit 1
                 fi
-                if [[ "$BW_SESSION" == 'Invalid master password.' ]] && [[ "$OS" == 'Linux' ]]
+                if [[ "$BW_SESSION" == 'Invalid master password.' ]] || [[ -z "$BW_SESSION" ]] && [[ "$OS" == 'Linux' ]]
                 then
                         zenity --info --text="Invalid master password."
                         exit 1
