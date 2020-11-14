@@ -4,13 +4,20 @@
 choco install -y alacritty
 ```
 
-Install and configure Debian WSL. 
-
+Install Debian WSL (or figure it out with a different distro). 
 
 ## Install and configure dependencies in WSL:
+
 ```bash
-sudo apt-get install -y fzf pass dialog nodejs npm
+sudo apt-get install -y fzf jq pass dialog nodejs npm git
 sudo npm install -g @bitwarden/cli
+```
+
+## Add bwmenu to PATH:
+
+```bash
+git clone https://github.com/heywoodlh/bw-scripts /opt/bw-scripts
+sudo ln -s /opt/bw-scripts/wsl/bwmenu /usr/local/bin/bwmenu
 ```
 
 Login to Bitwarden for initial config:
