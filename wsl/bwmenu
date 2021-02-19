@@ -28,6 +28,8 @@ TYPE_IDENTITY=4
 CHOOSE_OPTIONS=()
 DEDUP_MARK="(+)"
 
+BW_HASH=''
+
 check_keychain() {
   if [ ! -e ~/.password-store/bw-scripts/pass.gpg ]
   then
@@ -49,7 +51,7 @@ ask_password() {
   else
     mpw="$password"
   fi
-  echo -n "$mpw" | bw unlock --raw 2>/dev/null || exit_error $? "Could not unlock vault"
+  BW_HASH=$(echo -n "$mpw" | bw unlock --raw 2>/dev/null || exit_error $? "Could not unlock vault")
 }
 
 get_session_key() {
@@ -59,11 +61,11 @@ get_session_key() {
     then
       lock_vault
     fi
-    BW_HASH=$(ask_password)
+    ask_password
   else
     if ! BW_HASH=$(pass bw-scripts/bw_session 2>/dev/null)
     then
-      BW_HASH=$(ask_password)
+      ask_password
       echo -n $BW_HASH | pass insert -e bw-scripts/bw_session &>/dev/null
       [[ -z "$BW_HASH" ]] && exit_error 1 "Could not unlock vault"
     fi
