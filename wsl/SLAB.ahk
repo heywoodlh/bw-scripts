@@ -5,5 +5,5 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
 ^#s::
-Run, "C:\Program Files\Alacritty\Alacritty.exe" --dimensions 100 10 -e Debian.exe run bwmenu
+Run, "C:\Program Files\Alacritty\Alacritty.exe" -e Debian.exe run bwmenu
 return
